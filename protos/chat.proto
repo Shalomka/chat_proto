@@ -1,0 +1,73 @@
+syntax = "proto3";
+
+package chat;
+
+// Service definition for the chat application
+service ChatService {
+  // Send a message to a specific channel
+  rpc SendMessage (SendMessageRequest) returns (SendMessageResponse);
+  
+  // Stream messages from a specific channel
+  rpc StreamMessages (StreamMessagesRequest) returns (stream MessageResponse);
+  
+  // Create a new channel
+  rpc CreateChannel (CreateChannelRequest) returns (CreateChannelResponse);
+  
+  // List all channels
+  rpc ListChannels (ListChannelsRequest) returns (ListChannelsResponse);
+}
+
+// Message for a chat channel
+message Channel {
+  string id = 1;
+  string name = 2;
+}
+
+// Request to send a message
+message SendMessageRequest {
+  string channelId = 1;
+  string userId = 2;
+  string text = 3;
+}
+
+// Response after sending a message
+message SendMessageResponse {
+  int32 messageId = 1;
+  string channelId = 2;
+  string userId = 3;
+  string text = 4;
+  string timestamp = 5;
+}
+
+// Request to stream messages from a channel
+message StreamMessagesRequest {
+  string channel_id = 1;
+  // from timestamp
+    string from = 2;
+}
+
+// Response message
+message MessageResponse {
+  int32 messageId = 1;
+  string channelId = 2;
+  string userId = 3;
+  string text = 4;
+  string timestamp = 5;
+}
+
+// Request to create a new channel
+message CreateChannelRequest {
+  string channelId = 1;
+  string name = 2;
+}
+
+// Response after creating a new channel
+message CreateChannelResponse {}
+
+// Request to list all channels
+message ListChannelsRequest {}
+
+// Response with a list of channels
+message ListChannelsResponse {
+  repeated Channel channels = 1;
+}
