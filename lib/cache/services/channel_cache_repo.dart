@@ -1,5 +1,5 @@
-import 'package:chat_proto/object_box/models/cached_models.dart';
-import 'package:chat_proto/object_box/services/cache_repo.dart';
+import 'package:chat_proto/cache/models/cached_models.dart';
+import 'package:chat_proto/cache/services/cache_repo.dart';
 import 'package:chat_proto/objectbox.g.dart';
 
 class ChannelCacheRepo extends CacheRepo<CachedChannel> {
