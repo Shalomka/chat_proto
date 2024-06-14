@@ -13,18 +13,28 @@ import 'dart:core' as $core;
 
 import 'package:protobuf/protobuf.dart' as $pb;
 
+import 'google/protobuf/timestamp.pb.dart' as $1;
+
 /// Message for a chat channel
 class Channel extends $pb.GeneratedMessage {
   factory Channel({
-    $core.String? id,
+    $core.int? id,
+    $core.String? channelId,
     $core.String? name,
+    $1.Timestamp? lastMessage,
   }) {
     final $result = create();
     if (id != null) {
       $result.id = id;
     }
+    if (channelId != null) {
+      $result.channelId = channelId;
+    }
     if (name != null) {
       $result.name = name;
+    }
+    if (lastMessage != null) {
+      $result.lastMessage = lastMessage;
     }
     return $result;
   }
@@ -33,8 +43,10 @@ class Channel extends $pb.GeneratedMessage {
   factory Channel.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'Channel', package: const $pb.PackageName(_omitMessageNames ? '' : 'chat'), createEmptyInstance: create)
-    ..aOS(1, _omitFieldNames ? '' : 'id')
-    ..aOS(2, _omitFieldNames ? '' : 'name')
+    ..a<$core.int>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.O3)
+    ..aOS(2, _omitFieldNames ? '' : 'channelId', protoName: 'channelId')
+    ..aOS(3, _omitFieldNames ? '' : 'name')
+    ..aOM<$1.Timestamp>(4, _omitFieldNames ? '' : 'lastMessage', protoName: 'lastMessage', subBuilder: $1.Timestamp.create)
     ..hasRequiredFields = false
   ;
 
@@ -60,22 +72,43 @@ class Channel extends $pb.GeneratedMessage {
   static Channel? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.String get id => $_getSZ(0);
+  $core.int get id => $_getIZ(0);
   @$pb.TagNumber(1)
-  set id($core.String v) { $_setString(0, v); }
+  set id($core.int v) { $_setSignedInt32(0, v); }
   @$pb.TagNumber(1)
   $core.bool hasId() => $_has(0);
   @$pb.TagNumber(1)
   void clearId() => clearField(1);
 
   @$pb.TagNumber(2)
-  $core.String get name => $_getSZ(1);
+  $core.String get channelId => $_getSZ(1);
   @$pb.TagNumber(2)
-  set name($core.String v) { $_setString(1, v); }
+  set channelId($core.String v) { $_setString(1, v); }
   @$pb.TagNumber(2)
-  $core.bool hasName() => $_has(1);
+  $core.bool hasChannelId() => $_has(1);
   @$pb.TagNumber(2)
-  void clearName() => clearField(2);
+  void clearChannelId() => clearField(2);
+
+  @$pb.TagNumber(3)
+  $core.String get name => $_getSZ(2);
+  @$pb.TagNumber(3)
+  set name($core.String v) { $_setString(2, v); }
+  @$pb.TagNumber(3)
+  $core.bool hasName() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearName() => clearField(3);
+
+  /// timestamp of the last message
+  @$pb.TagNumber(4)
+  $1.Timestamp get lastMessage => $_getN(3);
+  @$pb.TagNumber(4)
+  set lastMessage($1.Timestamp v) { setField(4, v); }
+  @$pb.TagNumber(4)
+  $core.bool hasLastMessage() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearLastMessage() => clearField(4);
+  @$pb.TagNumber(4)
+  $1.Timestamp ensureLastMessage() => $_ensure(3);
 }
 
 /// Request to send a message
@@ -164,7 +197,7 @@ class SendMessageResponse extends $pb.GeneratedMessage {
     $core.String? channelId,
     $core.String? userId,
     $core.String? text,
-    $core.String? timestamp,
+    $1.Timestamp? timestamp,
   }) {
     final $result = create();
     if (messageId != null) {
@@ -193,7 +226,7 @@ class SendMessageResponse extends $pb.GeneratedMessage {
     ..aOS(2, _omitFieldNames ? '' : 'channelId', protoName: 'channelId')
     ..aOS(3, _omitFieldNames ? '' : 'userId', protoName: 'userId')
     ..aOS(4, _omitFieldNames ? '' : 'text')
-    ..aOS(5, _omitFieldNames ? '' : 'timestamp')
+    ..aOM<$1.Timestamp>(5, _omitFieldNames ? '' : 'timestamp', subBuilder: $1.Timestamp.create)
     ..hasRequiredFields = false
   ;
 
@@ -255,20 +288,22 @@ class SendMessageResponse extends $pb.GeneratedMessage {
   void clearText() => clearField(4);
 
   @$pb.TagNumber(5)
-  $core.String get timestamp => $_getSZ(4);
+  $1.Timestamp get timestamp => $_getN(4);
   @$pb.TagNumber(5)
-  set timestamp($core.String v) { $_setString(4, v); }
+  set timestamp($1.Timestamp v) { setField(5, v); }
   @$pb.TagNumber(5)
   $core.bool hasTimestamp() => $_has(4);
   @$pb.TagNumber(5)
   void clearTimestamp() => clearField(5);
+  @$pb.TagNumber(5)
+  $1.Timestamp ensureTimestamp() => $_ensure(4);
 }
 
 /// Request to stream messages from a channel
 class StreamMessagesRequest extends $pb.GeneratedMessage {
   factory StreamMessagesRequest({
     $core.String? channelId,
-    $core.String? from,
+    $1.Timestamp? from,
   }) {
     final $result = create();
     if (channelId != null) {
@@ -285,7 +320,7 @@ class StreamMessagesRequest extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'StreamMessagesRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'chat'), createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'channelId')
-    ..aOS(2, _omitFieldNames ? '' : 'from')
+    ..aOM<$1.Timestamp>(2, _omitFieldNames ? '' : 'from', subBuilder: $1.Timestamp.create)
     ..hasRequiredFields = false
   ;
 
@@ -321,13 +356,15 @@ class StreamMessagesRequest extends $pb.GeneratedMessage {
 
   /// from timestamp
   @$pb.TagNumber(2)
-  $core.String get from => $_getSZ(1);
+  $1.Timestamp get from => $_getN(1);
   @$pb.TagNumber(2)
-  set from($core.String v) { $_setString(1, v); }
+  set from($1.Timestamp v) { setField(2, v); }
   @$pb.TagNumber(2)
   $core.bool hasFrom() => $_has(1);
   @$pb.TagNumber(2)
   void clearFrom() => clearField(2);
+  @$pb.TagNumber(2)
+  $1.Timestamp ensureFrom() => $_ensure(1);
 }
 
 /// Response message
@@ -337,7 +374,7 @@ class MessageResponse extends $pb.GeneratedMessage {
     $core.String? channelId,
     $core.String? userId,
     $core.String? text,
-    $core.String? timestamp,
+    $1.Timestamp? timestamp,
   }) {
     final $result = create();
     if (messageId != null) {
@@ -366,7 +403,7 @@ class MessageResponse extends $pb.GeneratedMessage {
     ..aOS(2, _omitFieldNames ? '' : 'channelId', protoName: 'channelId')
     ..aOS(3, _omitFieldNames ? '' : 'userId', protoName: 'userId')
     ..aOS(4, _omitFieldNames ? '' : 'text')
-    ..aOS(5, _omitFieldNames ? '' : 'timestamp')
+    ..aOM<$1.Timestamp>(5, _omitFieldNames ? '' : 'timestamp', subBuilder: $1.Timestamp.create)
     ..hasRequiredFields = false
   ;
 
@@ -428,13 +465,15 @@ class MessageResponse extends $pb.GeneratedMessage {
   void clearText() => clearField(4);
 
   @$pb.TagNumber(5)
-  $core.String get timestamp => $_getSZ(4);
+  $1.Timestamp get timestamp => $_getN(4);
   @$pb.TagNumber(5)
-  set timestamp($core.String v) { $_setString(4, v); }
+  set timestamp($1.Timestamp v) { setField(5, v); }
   @$pb.TagNumber(5)
   $core.bool hasTimestamp() => $_has(4);
   @$pb.TagNumber(5)
   void clearTimestamp() => clearField(5);
+  @$pb.TagNumber(5)
+  $1.Timestamp ensureTimestamp() => $_ensure(4);
 }
 
 /// Request to create a new channel

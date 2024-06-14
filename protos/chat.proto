@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package chat;
 
+import "google/protobuf/timestamp.proto";
+
 // Service definition for the chat application
 service ChatService {
   // Send a message to a specific channel
@@ -19,8 +21,11 @@ service ChatService {
 
 // Message for a chat channel
 message Channel {
-  string id = 1;
-  string name = 2;
+  int32 id = 1;
+  string channelId = 2;
+  string name = 3;
+  // timestamp of the last message
+  google.protobuf.Timestamp lastMessage = 4;
 }
 
 // Request to send a message
@@ -36,14 +41,14 @@ message SendMessageResponse {
   string channelId = 2;
   string userId = 3;
   string text = 4;
-  string timestamp = 5;
+  google.protobuf.Timestamp timestamp = 5;
 }
 
 // Request to stream messages from a channel
 message StreamMessagesRequest {
   string channel_id = 1;
   // from timestamp
-    string from = 2;
+  google.protobuf.Timestamp from = 2;
 }
 
 // Response message
@@ -52,7 +57,7 @@ message MessageResponse {
   string channelId = 2;
   string userId = 3;
   string text = 4;
-  string timestamp = 5;
+  google.protobuf.Timestamp timestamp = 5;
 }
 
 // Request to create a new channel

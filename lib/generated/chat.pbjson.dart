@@ -17,14 +17,18 @@ import 'dart:typed_data' as $typed_data;
 const Channel$json = {
   '1': 'Channel',
   '2': [
-    {'1': 'id', '3': 1, '4': 1, '5': 9, '10': 'id'},
-    {'1': 'name', '3': 2, '4': 1, '5': 9, '10': 'name'},
+    {'1': 'id', '3': 1, '4': 1, '5': 5, '10': 'id'},
+    {'1': 'channelId', '3': 2, '4': 1, '5': 9, '10': 'channelId'},
+    {'1': 'name', '3': 3, '4': 1, '5': 9, '10': 'name'},
+    {'1': 'lastMessage', '3': 4, '4': 1, '5': 11, '6': '.google.protobuf.Timestamp', '10': 'lastMessage'},
   ],
 };
 
 /// Descriptor for `Channel`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List channelDescriptor = $convert.base64Decode(
-    'CgdDaGFubmVsEg4KAmlkGAEgASgJUgJpZBISCgRuYW1lGAIgASgJUgRuYW1l');
+    'CgdDaGFubmVsEg4KAmlkGAEgASgFUgJpZBIcCgljaGFubmVsSWQYAiABKAlSCWNoYW5uZWxJZB'
+    'ISCgRuYW1lGAMgASgJUgRuYW1lEjwKC2xhc3RNZXNzYWdlGAQgASgLMhouZ29vZ2xlLnByb3Rv'
+    'YnVmLlRpbWVzdGFtcFILbGFzdE1lc3NhZ2U=');
 
 @$core.Deprecated('Use sendMessageRequestDescriptor instead')
 const SendMessageRequest$json = {
@@ -49,7 +53,7 @@ const SendMessageResponse$json = {
     {'1': 'channelId', '3': 2, '4': 1, '5': 9, '10': 'channelId'},
     {'1': 'userId', '3': 3, '4': 1, '5': 9, '10': 'userId'},
     {'1': 'text', '3': 4, '4': 1, '5': 9, '10': 'text'},
-    {'1': 'timestamp', '3': 5, '4': 1, '5': 9, '10': 'timestamp'},
+    {'1': 'timestamp', '3': 5, '4': 1, '5': 11, '6': '.google.protobuf.Timestamp', '10': 'timestamp'},
   ],
 };
 
@@ -57,21 +61,22 @@ const SendMessageResponse$json = {
 final $typed_data.Uint8List sendMessageResponseDescriptor = $convert.base64Decode(
     'ChNTZW5kTWVzc2FnZVJlc3BvbnNlEhwKCW1lc3NhZ2VJZBgBIAEoBVIJbWVzc2FnZUlkEhwKCW'
     'NoYW5uZWxJZBgCIAEoCVIJY2hhbm5lbElkEhYKBnVzZXJJZBgDIAEoCVIGdXNlcklkEhIKBHRl'
-    'eHQYBCABKAlSBHRleHQSHAoJdGltZXN0YW1wGAUgASgJUgl0aW1lc3RhbXA=');
+    'eHQYBCABKAlSBHRleHQSOAoJdGltZXN0YW1wGAUgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbW'
+    'VzdGFtcFIJdGltZXN0YW1w');
 
 @$core.Deprecated('Use streamMessagesRequestDescriptor instead')
 const StreamMessagesRequest$json = {
   '1': 'StreamMessagesRequest',
   '2': [
     {'1': 'channel_id', '3': 1, '4': 1, '5': 9, '10': 'channelId'},
-    {'1': 'from', '3': 2, '4': 1, '5': 9, '10': 'from'},
+    {'1': 'from', '3': 2, '4': 1, '5': 11, '6': '.google.protobuf.Timestamp', '10': 'from'},
   ],
 };
 
 /// Descriptor for `StreamMessagesRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List streamMessagesRequestDescriptor = $convert.base64Decode(
-    'ChVTdHJlYW1NZXNzYWdlc1JlcXVlc3QSHQoKY2hhbm5lbF9pZBgBIAEoCVIJY2hhbm5lbElkEh'
-    'IKBGZyb20YAiABKAlSBGZyb20=');
+    'ChVTdHJlYW1NZXNzYWdlc1JlcXVlc3QSHQoKY2hhbm5lbF9pZBgBIAEoCVIJY2hhbm5lbElkEi'
+    '4KBGZyb20YAiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wUgRmcm9t');
 
 @$core.Deprecated('Use messageResponseDescriptor instead')
 const MessageResponse$json = {
@@ -81,7 +86,7 @@ const MessageResponse$json = {
     {'1': 'channelId', '3': 2, '4': 1, '5': 9, '10': 'channelId'},
     {'1': 'userId', '3': 3, '4': 1, '5': 9, '10': 'userId'},
     {'1': 'text', '3': 4, '4': 1, '5': 9, '10': 'text'},
-    {'1': 'timestamp', '3': 5, '4': 1, '5': 9, '10': 'timestamp'},
+    {'1': 'timestamp', '3': 5, '4': 1, '5': 11, '6': '.google.protobuf.Timestamp', '10': 'timestamp'},
   ],
 };
 
@@ -89,7 +94,8 @@ const MessageResponse$json = {
 final $typed_data.Uint8List messageResponseDescriptor = $convert.base64Decode(
     'Cg9NZXNzYWdlUmVzcG9uc2USHAoJbWVzc2FnZUlkGAEgASgFUgltZXNzYWdlSWQSHAoJY2hhbm'
     '5lbElkGAIgASgJUgljaGFubmVsSWQSFgoGdXNlcklkGAMgASgJUgZ1c2VySWQSEgoEdGV4dBgE'
-    'IAEoCVIEdGV4dBIcCgl0aW1lc3RhbXAYBSABKAlSCXRpbWVzdGFtcA==');
+    'IAEoCVIEdGV4dBI4Cgl0aW1lc3RhbXAYBSABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW'
+    '1wUgl0aW1lc3RhbXA=');
 
 @$core.Deprecated('Use createChannelRequestDescriptor instead')
 const CreateChannelRequest$json = {
