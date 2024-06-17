@@ -13,11 +13,11 @@ service ChatService {
 
   // Get messages from a specific channel
   rpc GetMessages (GetMessagesRequest)
-    returns (stream Message);
+    returns (GetMessagesResponse);
   
   // Stream messages from a specific channel
   rpc StreamMessageUpdates (StreamMessageUpdatesRequest)
-    returns (stream Message);
+    returns (stream ChatMessage);
   
   // Create a new channel
   rpc CreateChannel (CreateChannelRequest)
@@ -55,16 +55,20 @@ message SendMessageResponse {
 message GetMessagesRequest {
   string channelId = 1;
   // from timestamp
-  google.protobuf.Timestamp from = 2;}
+  google.protobuf.Timestamp from = 2;
+}
+
+message GetMessagesResponse {
+  repeated ChatMessage messages = 1;
+}
 
 // Request to stream message updates from a channel
 message StreamMessageUpdatesRequest {
   string channel_id = 1;
-
 }
 
 // Message response for streaming messages
-message Message {
+message ChatMessage {
   string messageId = 2;
   string channelId = 3;
   string userId = 4;

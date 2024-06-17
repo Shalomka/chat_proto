@@ -74,6 +74,19 @@ final $typed_data.Uint8List getMessagesRequestDescriptor = $convert.base64Decode
     'ChJHZXRNZXNzYWdlc1JlcXVlc3QSHAoJY2hhbm5lbElkGAEgASgJUgljaGFubmVsSWQSLgoEZn'
     'JvbRgCIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBSBGZyb20=');
 
+@$core.Deprecated('Use getMessagesResponseDescriptor instead')
+const GetMessagesResponse$json = {
+  '1': 'GetMessagesResponse',
+  '2': [
+    {'1': 'messages', '3': 1, '4': 3, '5': 11, '6': '.chat.ChatMessage', '10': 'messages'},
+  ],
+};
+
+/// Descriptor for `GetMessagesResponse`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List getMessagesResponseDescriptor = $convert.base64Decode(
+    'ChNHZXRNZXNzYWdlc1Jlc3BvbnNlEi0KCG1lc3NhZ2VzGAEgAygLMhEuY2hhdC5DaGF0TWVzc2'
+    'FnZVIIbWVzc2FnZXM=');
+
 @$core.Deprecated('Use streamMessageUpdatesRequestDescriptor instead')
 const StreamMessageUpdatesRequest$json = {
   '1': 'StreamMessageUpdatesRequest',
@@ -87,9 +100,9 @@ final $typed_data.Uint8List streamMessageUpdatesRequestDescriptor = $convert.bas
     'ChtTdHJlYW1NZXNzYWdlVXBkYXRlc1JlcXVlc3QSHQoKY2hhbm5lbF9pZBgBIAEoCVIJY2hhbm'
     '5lbElk');
 
-@$core.Deprecated('Use messageDescriptor instead')
-const Message$json = {
-  '1': 'Message',
+@$core.Deprecated('Use chatMessageDescriptor instead')
+const ChatMessage$json = {
+  '1': 'ChatMessage',
   '2': [
     {'1': 'messageId', '3': 2, '4': 1, '5': 9, '10': 'messageId'},
     {'1': 'channelId', '3': 3, '4': 1, '5': 9, '10': 'channelId'},
@@ -100,12 +113,12 @@ const Message$json = {
   ],
 };
 
-/// Descriptor for `Message`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List messageDescriptor = $convert.base64Decode(
-    'CgdNZXNzYWdlEhwKCW1lc3NhZ2VJZBgCIAEoCVIJbWVzc2FnZUlkEhwKCWNoYW5uZWxJZBgDIA'
-    'EoCVIJY2hhbm5lbElkEhYKBnVzZXJJZBgEIAEoCVIGdXNlcklkEhIKBHRleHQYBSABKAlSBHRl'
-    'eHQSOAoJdGltZXN0YW1wGAYgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcFIJdGltZX'
-    'N0YW1wEioKBnN0YXR1cxgHIAEoDjISLmNoYXQuVXBkYXRlU3RhdHVzUgZzdGF0dXM=');
+/// Descriptor for `ChatMessage`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List chatMessageDescriptor = $convert.base64Decode(
+    'CgtDaGF0TWVzc2FnZRIcCgltZXNzYWdlSWQYAiABKAlSCW1lc3NhZ2VJZBIcCgljaGFubmVsSW'
+    'QYAyABKAlSCWNoYW5uZWxJZBIWCgZ1c2VySWQYBCABKAlSBnVzZXJJZBISCgR0ZXh0GAUgASgJ'
+    'UgR0ZXh0EjgKCXRpbWVzdGFtcBgGIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBSCX'
+    'RpbWVzdGFtcBIqCgZzdGF0dXMYByABKA4yEi5jaGF0LlVwZGF0ZVN0YXR1c1IGc3RhdHVz');
 
 @$core.Deprecated('Use createChannelRequestDescriptor instead')
 const CreateChannelRequest$json = {
