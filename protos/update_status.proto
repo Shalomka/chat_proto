@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package chat;
+
+// status of sent update message. Can be pending, accepted or rejected
+enum UpdateStatus {
+    PENDING = 0;
+    ACCEPTED = 1;
+    REJECTED = 2;
+}

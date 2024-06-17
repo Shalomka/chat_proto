@@ -1,6 +1,5 @@
 import 'dart:typed_data';
 
-import 'package:chat_proto/generated/chat.pb.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:chat_proto/chat_proto.dart';
 

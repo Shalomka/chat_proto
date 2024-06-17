@@ -14,19 +14,17 @@ import 'dart:core' as $core;
 import 'package:protobuf/protobuf.dart' as $pb;
 
 import 'google/protobuf/timestamp.pb.dart' as $1;
+import 'update_status.pbenum.dart' as $2;
 
 /// Message for a chat channel
 class Channel extends $pb.GeneratedMessage {
   factory Channel({
-    $core.int? id,
     $core.String? channelId,
     $core.String? name,
     $1.Timestamp? lastMessage,
+    $2.UpdateStatus? status,
   }) {
     final $result = create();
-    if (id != null) {
-      $result.id = id;
-    }
     if (channelId != null) {
       $result.channelId = channelId;
     }
@@ -36,6 +34,9 @@ class Channel extends $pb.GeneratedMessage {
     if (lastMessage != null) {
       $result.lastMessage = lastMessage;
     }
+    if (status != null) {
+      $result.status = status;
+    }
     return $result;
   }
   Channel._() : super();
@@ -43,10 +44,10 @@ class Channel extends $pb.GeneratedMessage {
   factory Channel.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'Channel', package: const $pb.PackageName(_omitMessageNames ? '' : 'chat'), createEmptyInstance: create)
-    ..a<$core.int>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.O3)
-    ..aOS(2, _omitFieldNames ? '' : 'channelId', protoName: 'channelId')
-    ..aOS(3, _omitFieldNames ? '' : 'name')
-    ..aOM<$1.Timestamp>(4, _omitFieldNames ? '' : 'lastMessage', protoName: 'lastMessage', subBuilder: $1.Timestamp.create)
+    ..aOS(1, _omitFieldNames ? '' : 'channelId', protoName: 'channelId')
+    ..aOS(2, _omitFieldNames ? '' : 'name')
+    ..aOM<$1.Timestamp>(3, _omitFieldNames ? '' : 'lastMessage', protoName: 'lastMessage', subBuilder: $1.Timestamp.create)
+    ..e<$2.UpdateStatus>(4, _omitFieldNames ? '' : 'status', $pb.PbFieldType.OE, defaultOrMaker: $2.UpdateStatus.PENDING, valueOf: $2.UpdateStatus.valueOf, enumValues: $2.UpdateStatus.values)
     ..hasRequiredFields = false
   ;
 
@@ -72,53 +73,58 @@ class Channel extends $pb.GeneratedMessage {
   static Channel? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.int get id => $_getIZ(0);
+  $core.String get channelId => $_getSZ(0);
   @$pb.TagNumber(1)
-  set id($core.int v) { $_setSignedInt32(0, v); }
+  set channelId($core.String v) { $_setString(0, v); }
   @$pb.TagNumber(1)
-  $core.bool hasId() => $_has(0);
+  $core.bool hasChannelId() => $_has(0);
   @$pb.TagNumber(1)
-  void clearId() => clearField(1);
+  void clearChannelId() => clearField(1);
 
   @$pb.TagNumber(2)
-  $core.String get channelId => $_getSZ(1);
+  $core.String get name => $_getSZ(1);
   @$pb.TagNumber(2)
-  set channelId($core.String v) { $_setString(1, v); }
+  set name($core.String v) { $_setString(1, v); }
   @$pb.TagNumber(2)
-  $core.bool hasChannelId() => $_has(1);
+  $core.bool hasName() => $_has(1);
   @$pb.TagNumber(2)
-  void clearChannelId() => clearField(2);
-
-  @$pb.TagNumber(3)
-  $core.String get name => $_getSZ(2);
-  @$pb.TagNumber(3)
-  set name($core.String v) { $_setString(2, v); }
-  @$pb.TagNumber(3)
-  $core.bool hasName() => $_has(2);
-  @$pb.TagNumber(3)
-  void clearName() => clearField(3);
+  void clearName() => clearField(2);
 
   /// timestamp of the last message
+  @$pb.TagNumber(3)
+  $1.Timestamp get lastMessage => $_getN(2);
+  @$pb.TagNumber(3)
+  set lastMessage($1.Timestamp v) { setField(3, v); }
+  @$pb.TagNumber(3)
+  $core.bool hasLastMessage() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearLastMessage() => clearField(3);
+  @$pb.TagNumber(3)
+  $1.Timestamp ensureLastMessage() => $_ensure(2);
+
+  /// status of the channel
   @$pb.TagNumber(4)
-  $1.Timestamp get lastMessage => $_getN(3);
+  $2.UpdateStatus get status => $_getN(3);
   @$pb.TagNumber(4)
-  set lastMessage($1.Timestamp v) { setField(4, v); }
+  set status($2.UpdateStatus v) { setField(4, v); }
   @$pb.TagNumber(4)
-  $core.bool hasLastMessage() => $_has(3);
+  $core.bool hasStatus() => $_has(3);
   @$pb.TagNumber(4)
-  void clearLastMessage() => clearField(4);
-  @$pb.TagNumber(4)
-  $1.Timestamp ensureLastMessage() => $_ensure(3);
+  void clearStatus() => clearField(4);
 }
 
 /// Request to send a message
 class SendMessageRequest extends $pb.GeneratedMessage {
   factory SendMessageRequest({
+    $core.String? messageId,
     $core.String? channelId,
     $core.String? userId,
     $core.String? text,
   }) {
     final $result = create();
+    if (messageId != null) {
+      $result.messageId = messageId;
+    }
     if (channelId != null) {
       $result.channelId = channelId;
     }
@@ -135,9 +141,10 @@ class SendMessageRequest extends $pb.GeneratedMessage {
   factory SendMessageRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'SendMessageRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'chat'), createEmptyInstance: create)
-    ..aOS(1, _omitFieldNames ? '' : 'channelId', protoName: 'channelId')
-    ..aOS(2, _omitFieldNames ? '' : 'userId', protoName: 'userId')
-    ..aOS(3, _omitFieldNames ? '' : 'text')
+    ..aOS(1, _omitFieldNames ? '' : 'messageId', protoName: 'messageId')
+    ..aOS(2, _omitFieldNames ? '' : 'channelId', protoName: 'channelId')
+    ..aOS(3, _omitFieldNames ? '' : 'userId', protoName: 'userId')
+    ..aOS(4, _omitFieldNames ? '' : 'text')
     ..hasRequiredFields = false
   ;
 
@@ -163,57 +170,50 @@ class SendMessageRequest extends $pb.GeneratedMessage {
   static SendMessageRequest? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.String get channelId => $_getSZ(0);
+  $core.String get messageId => $_getSZ(0);
   @$pb.TagNumber(1)
-  set channelId($core.String v) { $_setString(0, v); }
+  set messageId($core.String v) { $_setString(0, v); }
   @$pb.TagNumber(1)
-  $core.bool hasChannelId() => $_has(0);
+  $core.bool hasMessageId() => $_has(0);
   @$pb.TagNumber(1)
-  void clearChannelId() => clearField(1);
+  void clearMessageId() => clearField(1);
 
   @$pb.TagNumber(2)
-  $core.String get userId => $_getSZ(1);
+  $core.String get channelId => $_getSZ(1);
   @$pb.TagNumber(2)
-  set userId($core.String v) { $_setString(1, v); }
+  set channelId($core.String v) { $_setString(1, v); }
   @$pb.TagNumber(2)
-  $core.bool hasUserId() => $_has(1);
+  $core.bool hasChannelId() => $_has(1);
   @$pb.TagNumber(2)
-  void clearUserId() => clearField(2);
+  void clearChannelId() => clearField(2);
 
   @$pb.TagNumber(3)
-  $core.String get text => $_getSZ(2);
+  $core.String get userId => $_getSZ(2);
   @$pb.TagNumber(3)
-  set text($core.String v) { $_setString(2, v); }
+  set userId($core.String v) { $_setString(2, v); }
   @$pb.TagNumber(3)
-  $core.bool hasText() => $_has(2);
+  $core.bool hasUserId() => $_has(2);
   @$pb.TagNumber(3)
-  void clearText() => clearField(3);
+  void clearUserId() => clearField(3);
+
+  @$pb.TagNumber(4)
+  $core.String get text => $_getSZ(3);
+  @$pb.TagNumber(4)
+  set text($core.String v) { $_setString(3, v); }
+  @$pb.TagNumber(4)
+  $core.bool hasText() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearText() => clearField(4);
 }
 
 /// Response after sending a message
 class SendMessageResponse extends $pb.GeneratedMessage {
   factory SendMessageResponse({
-    $core.int? messageId,
-    $core.String? channelId,
-    $core.String? userId,
-    $core.String? text,
-    $1.Timestamp? timestamp,
+    $2.UpdateStatus? status,
   }) {
     final $result = create();
-    if (messageId != null) {
-      $result.messageId = messageId;
-    }
-    if (channelId != null) {
-      $result.channelId = channelId;
-    }
-    if (userId != null) {
-      $result.userId = userId;
-    }
-    if (text != null) {
-      $result.text = text;
-    }
-    if (timestamp != null) {
-      $result.timestamp = timestamp;
+    if (status != null) {
+      $result.status = status;
     }
     return $result;
   }
@@ -222,11 +222,7 @@ class SendMessageResponse extends $pb.GeneratedMessage {
   factory SendMessageResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'SendMessageResponse', package: const $pb.PackageName(_omitMessageNames ? '' : 'chat'), createEmptyInstance: create)
-    ..a<$core.int>(1, _omitFieldNames ? '' : 'messageId', $pb.PbFieldType.O3, protoName: 'messageId')
-    ..aOS(2, _omitFieldNames ? '' : 'channelId', protoName: 'channelId')
-    ..aOS(3, _omitFieldNames ? '' : 'userId', protoName: 'userId')
-    ..aOS(4, _omitFieldNames ? '' : 'text')
-    ..aOM<$1.Timestamp>(5, _omitFieldNames ? '' : 'timestamp', subBuilder: $1.Timestamp.create)
+    ..e<$2.UpdateStatus>(1, _omitFieldNames ? '' : 'status', $pb.PbFieldType.OE, defaultOrMaker: $2.UpdateStatus.PENDING, valueOf: $2.UpdateStatus.valueOf, enumValues: $2.UpdateStatus.values)
     ..hasRequiredFields = false
   ;
 
@@ -251,57 +247,20 @@ class SendMessageResponse extends $pb.GeneratedMessage {
   static SendMessageResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<SendMessageResponse>(create);
   static SendMessageResponse? _defaultInstance;
 
+  /// respond with update status
   @$pb.TagNumber(1)
-  $core.int get messageId => $_getIZ(0);
+  $2.UpdateStatus get status => $_getN(0);
   @$pb.TagNumber(1)
-  set messageId($core.int v) { $_setSignedInt32(0, v); }
+  set status($2.UpdateStatus v) { setField(1, v); }
   @$pb.TagNumber(1)
-  $core.bool hasMessageId() => $_has(0);
+  $core.bool hasStatus() => $_has(0);
   @$pb.TagNumber(1)
-  void clearMessageId() => clearField(1);
-
-  @$pb.TagNumber(2)
-  $core.String get channelId => $_getSZ(1);
-  @$pb.TagNumber(2)
-  set channelId($core.String v) { $_setString(1, v); }
-  @$pb.TagNumber(2)
-  $core.bool hasChannelId() => $_has(1);
-  @$pb.TagNumber(2)
-  void clearChannelId() => clearField(2);
-
-  @$pb.TagNumber(3)
-  $core.String get userId => $_getSZ(2);
-  @$pb.TagNumber(3)
-  set userId($core.String v) { $_setString(2, v); }
-  @$pb.TagNumber(3)
-  $core.bool hasUserId() => $_has(2);
-  @$pb.TagNumber(3)
-  void clearUserId() => clearField(3);
-
-  @$pb.TagNumber(4)
-  $core.String get text => $_getSZ(3);
-  @$pb.TagNumber(4)
-  set text($core.String v) { $_setString(3, v); }
-  @$pb.TagNumber(4)
-  $core.bool hasText() => $_has(3);
-  @$pb.TagNumber(4)
-  void clearText() => clearField(4);
-
-  @$pb.TagNumber(5)
-  $1.Timestamp get timestamp => $_getN(4);
-  @$pb.TagNumber(5)
-  set timestamp($1.Timestamp v) { setField(5, v); }
-  @$pb.TagNumber(5)
-  $core.bool hasTimestamp() => $_has(4);
-  @$pb.TagNumber(5)
-  void clearTimestamp() => clearField(5);
-  @$pb.TagNumber(5)
-  $1.Timestamp ensureTimestamp() => $_ensure(4);
+  void clearStatus() => clearField(1);
 }
 
-/// Request to stream messages from a channel
-class StreamMessagesRequest extends $pb.GeneratedMessage {
-  factory StreamMessagesRequest({
+/// request to get messages from a channel
+class GetMessagesRequest extends $pb.GeneratedMessage {
+  factory GetMessagesRequest({
     $core.String? channelId,
     $1.Timestamp? from,
   }) {
@@ -314,12 +273,12 @@ class StreamMessagesRequest extends $pb.GeneratedMessage {
     }
     return $result;
   }
-  StreamMessagesRequest._() : super();
-  factory StreamMessagesRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory StreamMessagesRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  GetMessagesRequest._() : super();
+  factory GetMessagesRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory GetMessagesRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'StreamMessagesRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'chat'), createEmptyInstance: create)
-    ..aOS(1, _omitFieldNames ? '' : 'channelId')
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'GetMessagesRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'chat'), createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'channelId', protoName: 'channelId')
     ..aOM<$1.Timestamp>(2, _omitFieldNames ? '' : 'from', subBuilder: $1.Timestamp.create)
     ..hasRequiredFields = false
   ;
@@ -328,22 +287,22 @@ class StreamMessagesRequest extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
   'Will be removed in next major version')
-  StreamMessagesRequest clone() => StreamMessagesRequest()..mergeFromMessage(this);
+  GetMessagesRequest clone() => GetMessagesRequest()..mergeFromMessage(this);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  StreamMessagesRequest copyWith(void Function(StreamMessagesRequest) updates) => super.copyWith((message) => updates(message as StreamMessagesRequest)) as StreamMessagesRequest;
+  GetMessagesRequest copyWith(void Function(GetMessagesRequest) updates) => super.copyWith((message) => updates(message as GetMessagesRequest)) as GetMessagesRequest;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
-  static StreamMessagesRequest create() => StreamMessagesRequest._();
-  StreamMessagesRequest createEmptyInstance() => create();
-  static $pb.PbList<StreamMessagesRequest> createRepeated() => $pb.PbList<StreamMessagesRequest>();
+  static GetMessagesRequest create() => GetMessagesRequest._();
+  GetMessagesRequest createEmptyInstance() => create();
+  static $pb.PbList<GetMessagesRequest> createRepeated() => $pb.PbList<GetMessagesRequest>();
   @$core.pragma('dart2js:noInline')
-  static StreamMessagesRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<StreamMessagesRequest>(create);
-  static StreamMessagesRequest? _defaultInstance;
+  static GetMessagesRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetMessagesRequest>(create);
+  static GetMessagesRequest? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.String get channelId => $_getSZ(0);
@@ -367,14 +326,66 @@ class StreamMessagesRequest extends $pb.GeneratedMessage {
   $1.Timestamp ensureFrom() => $_ensure(1);
 }
 
-/// Response message
-class MessageResponse extends $pb.GeneratedMessage {
-  factory MessageResponse({
-    $core.int? messageId,
+/// Request to stream message updates from a channel
+class StreamMessageUpdatesRequest extends $pb.GeneratedMessage {
+  factory StreamMessageUpdatesRequest({
+    $core.String? channelId,
+  }) {
+    final $result = create();
+    if (channelId != null) {
+      $result.channelId = channelId;
+    }
+    return $result;
+  }
+  StreamMessageUpdatesRequest._() : super();
+  factory StreamMessageUpdatesRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory StreamMessageUpdatesRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'StreamMessageUpdatesRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'chat'), createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'channelId')
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  StreamMessageUpdatesRequest clone() => StreamMessageUpdatesRequest()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  StreamMessageUpdatesRequest copyWith(void Function(StreamMessageUpdatesRequest) updates) => super.copyWith((message) => updates(message as StreamMessageUpdatesRequest)) as StreamMessageUpdatesRequest;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static StreamMessageUpdatesRequest create() => StreamMessageUpdatesRequest._();
+  StreamMessageUpdatesRequest createEmptyInstance() => create();
+  static $pb.PbList<StreamMessageUpdatesRequest> createRepeated() => $pb.PbList<StreamMessageUpdatesRequest>();
+  @$core.pragma('dart2js:noInline')
+  static StreamMessageUpdatesRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<StreamMessageUpdatesRequest>(create);
+  static StreamMessageUpdatesRequest? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get channelId => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set channelId($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasChannelId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearChannelId() => clearField(1);
+}
+
+/// Message response for streaming messages
+class Message extends $pb.GeneratedMessage {
+  factory Message({
+    $core.String? messageId,
     $core.String? channelId,
     $core.String? userId,
     $core.String? text,
     $1.Timestamp? timestamp,
+    $2.UpdateStatus? status,
   }) {
     final $result = create();
     if (messageId != null) {
@@ -392,18 +403,22 @@ class MessageResponse extends $pb.GeneratedMessage {
     if (timestamp != null) {
       $result.timestamp = timestamp;
     }
+    if (status != null) {
+      $result.status = status;
+    }
     return $result;
   }
-  MessageResponse._() : super();
-  factory MessageResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory MessageResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  Message._() : super();
+  factory Message.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory Message.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'MessageResponse', package: const $pb.PackageName(_omitMessageNames ? '' : 'chat'), createEmptyInstance: create)
-    ..a<$core.int>(1, _omitFieldNames ? '' : 'messageId', $pb.PbFieldType.O3, protoName: 'messageId')
-    ..aOS(2, _omitFieldNames ? '' : 'channelId', protoName: 'channelId')
-    ..aOS(3, _omitFieldNames ? '' : 'userId', protoName: 'userId')
-    ..aOS(4, _omitFieldNames ? '' : 'text')
-    ..aOM<$1.Timestamp>(5, _omitFieldNames ? '' : 'timestamp', subBuilder: $1.Timestamp.create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'Message', package: const $pb.PackageName(_omitMessageNames ? '' : 'chat'), createEmptyInstance: create)
+    ..aOS(2, _omitFieldNames ? '' : 'messageId', protoName: 'messageId')
+    ..aOS(3, _omitFieldNames ? '' : 'channelId', protoName: 'channelId')
+    ..aOS(4, _omitFieldNames ? '' : 'userId', protoName: 'userId')
+    ..aOS(5, _omitFieldNames ? '' : 'text')
+    ..aOM<$1.Timestamp>(6, _omitFieldNames ? '' : 'timestamp', subBuilder: $1.Timestamp.create)
+    ..e<$2.UpdateStatus>(7, _omitFieldNames ? '' : 'status', $pb.PbFieldType.OE, defaultOrMaker: $2.UpdateStatus.PENDING, valueOf: $2.UpdateStatus.valueOf, enumValues: $2.UpdateStatus.values)
     ..hasRequiredFields = false
   ;
 
@@ -411,69 +426,78 @@ class MessageResponse extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
   'Will be removed in next major version')
-  MessageResponse clone() => MessageResponse()..mergeFromMessage(this);
+  Message clone() => Message()..mergeFromMessage(this);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  MessageResponse copyWith(void Function(MessageResponse) updates) => super.copyWith((message) => updates(message as MessageResponse)) as MessageResponse;
+  Message copyWith(void Function(Message) updates) => super.copyWith((message) => updates(message as Message)) as Message;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
-  static MessageResponse create() => MessageResponse._();
-  MessageResponse createEmptyInstance() => create();
-  static $pb.PbList<MessageResponse> createRepeated() => $pb.PbList<MessageResponse>();
+  static Message create() => Message._();
+  Message createEmptyInstance() => create();
+  static $pb.PbList<Message> createRepeated() => $pb.PbList<Message>();
   @$core.pragma('dart2js:noInline')
-  static MessageResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<MessageResponse>(create);
-  static MessageResponse? _defaultInstance;
+  static Message getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Message>(create);
+  static Message? _defaultInstance;
 
-  @$pb.TagNumber(1)
-  $core.int get messageId => $_getIZ(0);
-  @$pb.TagNumber(1)
-  set messageId($core.int v) { $_setSignedInt32(0, v); }
-  @$pb.TagNumber(1)
+  @$pb.TagNumber(2)
+  $core.String get messageId => $_getSZ(0);
+  @$pb.TagNumber(2)
+  set messageId($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(2)
   $core.bool hasMessageId() => $_has(0);
-  @$pb.TagNumber(1)
-  void clearMessageId() => clearField(1);
-
   @$pb.TagNumber(2)
+  void clearMessageId() => clearField(2);
+
+  @$pb.TagNumber(3)
   $core.String get channelId => $_getSZ(1);
-  @$pb.TagNumber(2)
+  @$pb.TagNumber(3)
   set channelId($core.String v) { $_setString(1, v); }
-  @$pb.TagNumber(2)
+  @$pb.TagNumber(3)
   $core.bool hasChannelId() => $_has(1);
-  @$pb.TagNumber(2)
-  void clearChannelId() => clearField(2);
-
   @$pb.TagNumber(3)
+  void clearChannelId() => clearField(3);
+
+  @$pb.TagNumber(4)
   $core.String get userId => $_getSZ(2);
-  @$pb.TagNumber(3)
+  @$pb.TagNumber(4)
   set userId($core.String v) { $_setString(2, v); }
-  @$pb.TagNumber(3)
+  @$pb.TagNumber(4)
   $core.bool hasUserId() => $_has(2);
-  @$pb.TagNumber(3)
-  void clearUserId() => clearField(3);
-
   @$pb.TagNumber(4)
+  void clearUserId() => clearField(4);
+
+  @$pb.TagNumber(5)
   $core.String get text => $_getSZ(3);
-  @$pb.TagNumber(4)
+  @$pb.TagNumber(5)
   set text($core.String v) { $_setString(3, v); }
-  @$pb.TagNumber(4)
+  @$pb.TagNumber(5)
   $core.bool hasText() => $_has(3);
-  @$pb.TagNumber(4)
-  void clearText() => clearField(4);
+  @$pb.TagNumber(5)
+  void clearText() => clearField(5);
 
-  @$pb.TagNumber(5)
+  @$pb.TagNumber(6)
   $1.Timestamp get timestamp => $_getN(4);
-  @$pb.TagNumber(5)
-  set timestamp($1.Timestamp v) { setField(5, v); }
-  @$pb.TagNumber(5)
+  @$pb.TagNumber(6)
+  set timestamp($1.Timestamp v) { setField(6, v); }
+  @$pb.TagNumber(6)
   $core.bool hasTimestamp() => $_has(4);
-  @$pb.TagNumber(5)
-  void clearTimestamp() => clearField(5);
-  @$pb.TagNumber(5)
+  @$pb.TagNumber(6)
+  void clearTimestamp() => clearField(6);
+  @$pb.TagNumber(6)
   $1.Timestamp ensureTimestamp() => $_ensure(4);
+
+  @$pb.TagNumber(7)
+  $2.UpdateStatus get status => $_getN(5);
+  @$pb.TagNumber(7)
+  set status($2.UpdateStatus v) { setField(7, v); }
+  @$pb.TagNumber(7)
+  $core.bool hasStatus() => $_has(5);
+  @$pb.TagNumber(7)
+  void clearStatus() => clearField(7);
 }
 
 /// Request to create a new channel
@@ -543,12 +567,21 @@ class CreateChannelRequest extends $pb.GeneratedMessage {
 
 /// Response after creating a new channel
 class CreateChannelResponse extends $pb.GeneratedMessage {
-  factory CreateChannelResponse() => create();
+  factory CreateChannelResponse({
+    $2.UpdateStatus? status,
+  }) {
+    final $result = create();
+    if (status != null) {
+      $result.status = status;
+    }
+    return $result;
+  }
   CreateChannelResponse._() : super();
   factory CreateChannelResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
   factory CreateChannelResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'CreateChannelResponse', package: const $pb.PackageName(_omitMessageNames ? '' : 'chat'), createEmptyInstance: create)
+    ..e<$2.UpdateStatus>(1, _omitFieldNames ? '' : 'status', $pb.PbFieldType.OE, defaultOrMaker: $2.UpdateStatus.PENDING, valueOf: $2.UpdateStatus.valueOf, enumValues: $2.UpdateStatus.values)
     ..hasRequiredFields = false
   ;
 
@@ -572,6 +605,16 @@ class CreateChannelResponse extends $pb.GeneratedMessage {
   @$core.pragma('dart2js:noInline')
   static CreateChannelResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<CreateChannelResponse>(create);
   static CreateChannelResponse? _defaultInstance;
+
+  /// respond with update status
+  @$pb.TagNumber(1)
+  $2.UpdateStatus get status => $_getN(0);
+  @$pb.TagNumber(1)
+  set status($2.UpdateStatus v) { setField(1, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasStatus() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearStatus() => clearField(1);
 }
 
 /// Request to list all channels
