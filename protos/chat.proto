@@ -5,31 +5,39 @@ package chat;
 import "google/protobuf/timestamp.proto";
 import "update_status.proto";
 
-// Service definition for the chat application
+///
+/// Service definition for the chat application
+///
+
 service ChatService {
+
   // Send a message to a specific channel
-  rpc SendMessage (SendMessageRequest)
-    returns (SendMessageResponse);
+  rpc SendMessage (ChatMessage)
+    returns (CallStatusResponse);
 
   // Get messages from a specific channel
   rpc GetMessages (GetMessagesRequest)
-    returns (GetMessagesResponse);
+    returns (ChatMessage);
   
   // Stream messages from a specific channel
   rpc StreamMessageUpdates (StreamMessageUpdatesRequest)
     returns (stream ChatMessage);
   
   // Create a new channel
-  rpc CreateChannel (CreateChannelRequest)
-    returns (CreateChannelResponse);
+  rpc CreateChannel (ChatChannel)
+    returns (CallStatusResponse);
   
   // List all channels
   rpc ListChannels (ListChannelsRequest)
     returns (ListChannelsResponse);
 }
 
-// Message for a chat channel
-message Channel {
+///
+/// Message definitions
+///
+
+// Chat channel definition
+message ChatChannel {
   string channelId = 1;
   string name = 2;
   // timestamp of the last message
@@ -38,36 +46,16 @@ message Channel {
   UpdateStatus status = 4;
 }
 
-// Request to send a message
-message SendMessageRequest {
-  string messageId = 1;
-  string channelId = 2;
-  string userId = 3;
-  string text = 4;
+// Request to list all channels
+message ListChannelsRequest {}
+
+// Response with a list of channels
+message ListChannelsResponse {
+  repeated ChatChannel channels = 1;
 }
 
-// Response after sending a message
-message SendMessageResponse {
-  // respond with update status
-  UpdateStatus status = 1;
-}
-// request to get messages from a channel
-message GetMessagesRequest {
-  string channelId = 1;
-  // from timestamp
-  google.protobuf.Timestamp from = 2;
-}
 
-message GetMessagesResponse {
-  repeated ChatMessage messages = 1;
-}
-
-// Request to stream message updates from a channel
-message StreamMessageUpdatesRequest {
-  string channel_id = 1;
-}
-
-// Message response for streaming messages
+// ChatMessage definition
 message ChatMessage {
   string messageId = 2;
   string channelId = 3;
@@ -77,22 +65,21 @@ message ChatMessage {
   UpdateStatus status = 7;
 }
 
-// Request to create a new channel
-message CreateChannelRequest {
+// request to get messages from a channel
+message GetMessagesRequest {
   string channelId = 1;
-  string name = 2;
+  // from timestamp
+  google.protobuf.Timestamp from = 2;
 }
 
-// Response after creating a new channel
-message CreateChannelResponse {
-  // respond with update status
+// Request to stream message updates from a channel
+message StreamMessageUpdatesRequest {
+  string channel_id = 1;
+}
+
+
+// Create, update, delete requests response
+message CallStatusResponse {
   UpdateStatus status = 1;
-}
-
-// Request to list all channels
-message ListChannelsRequest {}
-
-// Response with a list of channels
-message ListChannelsResponse {
-  repeated Channel channels = 1;
+  string message = 2;
 }

@@ -1,6 +1,6 @@
 name: chat_proto
 description: "chat model and service base classes"
-version: 0.0.7
+version: 0.0.8
 homepage:
 
 environment:
