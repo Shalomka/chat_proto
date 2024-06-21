@@ -382,6 +382,51 @@ class GetMessagesRequest extends $pb.GeneratedMessage {
   $1.Timestamp ensureFrom() => $_ensure(1);
 }
 
+/// response with a list of messages
+class GetMessagesResponse extends $pb.GeneratedMessage {
+  factory GetMessagesResponse({
+    $core.Iterable<ChatMessage>? messages,
+  }) {
+    final $result = create();
+    if (messages != null) {
+      $result.messages.addAll(messages);
+    }
+    return $result;
+  }
+  GetMessagesResponse._() : super();
+  factory GetMessagesResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory GetMessagesResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'GetMessagesResponse', package: const $pb.PackageName(_omitMessageNames ? '' : 'chat'), createEmptyInstance: create)
+    ..pc<ChatMessage>(1, _omitFieldNames ? '' : 'messages', $pb.PbFieldType.PM, subBuilder: ChatMessage.create)
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  GetMessagesResponse clone() => GetMessagesResponse()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  GetMessagesResponse copyWith(void Function(GetMessagesResponse) updates) => super.copyWith((message) => updates(message as GetMessagesResponse)) as GetMessagesResponse;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static GetMessagesResponse create() => GetMessagesResponse._();
+  GetMessagesResponse createEmptyInstance() => create();
+  static $pb.PbList<GetMessagesResponse> createRepeated() => $pb.PbList<GetMessagesResponse>();
+  @$core.pragma('dart2js:noInline')
+  static GetMessagesResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetMessagesResponse>(create);
+  static GetMessagesResponse? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.List<ChatMessage> get messages => $_getList(0);
+}
+
 /// Request to stream message updates from a channel
 class StreamMessageUpdatesRequest extends $pb.GeneratedMessage {
   factory StreamMessageUpdatesRequest({

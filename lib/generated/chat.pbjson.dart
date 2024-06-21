@@ -87,6 +87,19 @@ final $typed_data.Uint8List getMessagesRequestDescriptor = $convert.base64Decode
     'ChJHZXRNZXNzYWdlc1JlcXVlc3QSHAoJY2hhbm5lbElkGAEgASgJUgljaGFubmVsSWQSLgoEZn'
     'JvbRgCIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBSBGZyb20=');
 
+@$core.Deprecated('Use getMessagesResponseDescriptor instead')
+const GetMessagesResponse$json = {
+  '1': 'GetMessagesResponse',
+  '2': [
+    {'1': 'messages', '3': 1, '4': 3, '5': 11, '6': '.chat.ChatMessage', '10': 'messages'},
+  ],
+};
+
+/// Descriptor for `GetMessagesResponse`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List getMessagesResponseDescriptor = $convert.base64Decode(
+    'ChNHZXRNZXNzYWdlc1Jlc3BvbnNlEi0KCG1lc3NhZ2VzGAEgAygLMhEuY2hhdC5DaGF0TWVzc2'
+    'FnZVIIbWVzc2FnZXM=');
+
 @$core.Deprecated('Use streamMessageUpdatesRequestDescriptor instead')
 const StreamMessageUpdatesRequest$json = {
   '1': 'StreamMessageUpdatesRequest',

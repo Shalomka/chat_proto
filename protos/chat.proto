@@ -17,7 +17,7 @@ service ChatService {
 
   // Get messages from a specific channel
   rpc GetMessages (GetMessagesRequest)
-    returns (ChatMessage);
+    returns (GetMessagesResponse);
   
   // Stream messages from a specific channel
   rpc StreamMessageUpdates (StreamMessageUpdatesRequest)
@@ -70,6 +70,11 @@ message GetMessagesRequest {
   string channelId = 1;
   // from timestamp
   google.protobuf.Timestamp from = 2;
+}
+
+// response with a list of messages
+message GetMessagesResponse {
+  repeated ChatMessage messages = 1;
 }
 
 // Request to stream message updates from a channel
